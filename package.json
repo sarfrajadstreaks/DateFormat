@@ -1,0 +1,22 @@
+{
+  "name": "dateformat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarfrajadstreaks/DateFormat.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sarfrajadstreaks/DateFormat/issues"
+  },
+  "homepage": "https://github.com/sarfrajadstreaks/DateFormat#readme",
+  "devDependencies": {
+    "jest": "^29.4.1"
+  }
+}
