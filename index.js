@@ -1,50 +1,42 @@
 
  /*
-            dateString="MM/DD/YYYY"--"MM-DD-YYYY"---"MM.DD.YYYY"
-            you can controll to append leading zero by DD/D , MM/M
-            you can also controll the Year digit ...YYYYY will give 2023 and YY will give 23
-          
-            dateString={
-              weekday:"short/long" --- result - Fri/Friday,
-              day="numeric"/"2-digit"---result - 1/01,
-              month="short"/"long",-----result -Jan/January
-              year:"numeric"/"2-digit",---result--2023/23
-            }
-            result: Friday, January 27, 2023/ Fri, Jan 27, 2023/ Jan 27, 2023....etc
-         */
+       
+ */
 
 export const newDate=function (dateString){
+ let date;
   try {
-    const date=dateString?(new Date( typeof dateString==="string"?dateString.replaceAll("-","/"):dateString)):new Date();
+   if(dateString){
+     date=new Date( typeof dateString==="string"?dateString.replaceAll("-","/"):dateString
+    }else{
+     date=new Date()          
+    }
     this.get=function (){
       return date;
     }
     this.formatDate=function (formatString){
-      if(!formatString){
-        date.toLocaleDateString('en-US')
-      }
-      else if(typeof formatString==="string" && /[\/:|.-]/g.test(formatString)){
-        let d=[];
-        let delimiter=formatString.match(/[\/:|.-]/g)[0];
-        let seq=formatString.split(delimiter);
-        d[seq.indexOf('DD'||'D')]=date.toLocaleDateString('en-US',{day:seq.includes("DD")?"2-digit":"numeric"})
-        d[seq.indexOf('MM'||'M')]=date.toLocaleDateString('en-US',{month:seq.includes("MM")?"2-digit":"numeric"})
-        d[seq.indexOf('YYYY'||'YY')]=date.toLocaleDateString('en-US',{year:seq.includes("YY")?"2-digit":"numeric"})
-        return d.join(delimiter)
-      }
-      else{
-        /*
-            dateString={
-              weekday:"short/long" --- result - Fri/Friday,
-              day="numeric"/"2-digit"---result - 1/01,
-              month="short"/"long",-----result -Jan/January
-              year:"numeric"/"2-digit",---result--2023/23
-            }
-            result: Friday, January 27, 2023/ Fri, Jan 27, 2023/ Jan 27, 2023....etc
-         */
-        return date.toLocaleDateString('en-US',{...formatString});
-      }
-
+        let userDate=new Date(date);
+        let userFormate=formateString.toLowerCase();
+        let expectedFormate=userFormate.split(/[(),\s\/:|.-]/g)  
+        let stringDay=expectedFormate.find((ele)=>ele.match(/day\d|day/g))  
+        let stringDayLen=Number(stringDay?.match(/\d/g))
+        let weekday=userDate.toLocaleDateString('en-US',{weekday:"long"}).substr(0,stringDayLen?stringDayLen:undefined)
+        let numberDay=expectedFormate.find((ele)=>ele.match(/d(?!\S)|dd/g))
+        let Day=userDate.toLocaleDateString('en-US',{day:numberDay?.length==2?"2-digit":"numeric"})
+        let stringMonth=expectedFormate.find((ele)=>ele.match(/mon\d|mon/g))
+        let stringMonthLen=Number(stringMonth?.match(/\d/g))
+        let monthString=userDate.toLocaleDateString('en-US',{month:"long"}).substr(0,stringMonthLen?stringMonthLen:undefined)
+        let numberMonth=expectedFormate.find((ele)=>ele.match(/m(?!\S)|mm/g))
+        let Month=userDate.toLocaleDateString('en-US',{month:numberMonth?.length==2?"2-digit":"numeric"})
+        let numberYear=expectedFormate.find((ele)=>ele.match(/yyyy|yy/g))
+        let Year=userDate.toLocaleDateString('en-US',{year:numberYear?.length==2?"2-digit":"numeric"})
+    
+        userFormate=stringDay?userFormate.replace(stringDay,weekday):userFormate
+        userFormate=numberDay?userFormate.replace(numberDay,Day):userFormate
+        userFormate=stringMonth?userFormate.replace(stringMonth,monthString):userFormate
+        userFormate=numberMonth?userFormate.replace(numberMonth,Month):userFormate
+        userFormate=numberYear?userFormate.replace(numberYear,Year):userFormate
+        return userFormate;
     }
   }catch (e) {
     throw new Error("Object not initilized: use new operator to initialize")
