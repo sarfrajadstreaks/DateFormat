@@ -1,11 +1,11 @@
-function Date_ (dateString) {
+export function Date_ (dateString) {
   this.date;
   try {
     this.date = dateString ? new Date(typeof dateString === "string" ? dateString.replaceAll("-", "/") : dateString) : new Date();
   } catch (e) {
     throw new Error("Object not initialized: use new operator to initialize");
   }
-};
+}
 Date_.prototype.format = function (formatTemplate) {
   if(this.date.toString()==="Invalid Date"){
     return this.date.toString();
@@ -36,4 +36,3 @@ Date_.prototype.format = function (formatTemplate) {
 Date_.prototype.getDate=function() {
   return this.date;
 }
-module.exports = {Date_};

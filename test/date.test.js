@@ -1,6 +1,6 @@
-const {Date_} =require("../src");
+import { Date_ } from "../src/index";
 describe('validate date Date_ object creation', () => { 
-    it.skip("should return date object when init", () => {
+    it.skip("should return date object when init",() => {
         let date=Date_()
         console.log(date)
         expect(date).toThrow(new Error("Object not initialized: use new operator to initialize"))
