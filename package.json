@@ -1,6 +1,6 @@
 {
   "name": "lite-dateformat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "src/index.js",
   "type": "module",
@@ -11,11 +11,22 @@
     "type": "git",
     "url": "git+https://github.com/sarfrajadstreaks/DateFormat.git"
   },
-  "author": "",
+  "author": "Sarfraj Akhtar <mdsarfrajakhtar@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sarfrajadstreaks/DateFormat/issues"
   },
+  "contributors": [
+    "Sarfraj Akhtar"
+  ],
+  "keywords": [
+    "date",
+    "format",
+    "date format",
+    "dateFormat",
+    "new Date issue",
+    "format date js"
+  ],
   "homepage": "https://github.com/sarfrajadstreaks/DateFormat#readme",
   "devDependencies": {
     "@babel/core": "^7.20.12",
