@@ -33,6 +33,7 @@ Example 2023-01-03
 ```
 
 ## Example
+```
 new Date_("Jan 12, 2023").format("mm/dd/yyyy") returns 01/12/2023
 
 new Date_("Jan 12, 2023").format("mm-dd-yyyy") returns 01-12-2023
@@ -42,7 +43,7 @@ new Date_("Jan 12, 2023").format("dd-mm-yy") returns 12-01-23
 new Date_("Jan 12, 2023").format("day, DD, mon3") returns Thursday, 12, Jan
 new Date_("Jan 12, 2023").format("day, DD, mon") returns Thursday, 12, January
 new Date_("Jan 12, 2023").format("day3, DD, mon3") returns Thu, 12, Jan
-
+```
 supported delimiters are  { / , - , . , [space],[comma]}
 
 ## License
